@@ -20,6 +20,8 @@ if media_type == "Video":
 
     # Display the video if a file is selected
     if video_file is not None:
+        # Replace None with an empty string for video_caption
+        video_caption = "" if video_caption is None else video_caption
         st.video(video_file, caption=video_caption)
 
         # Add a "Save" button to save the video
@@ -73,7 +75,10 @@ elif media_type == "Image":
             "Enter a caption for the image (optional)", value=image_caption)
 
         # Display the image
-        st.image(image, use_column_width=True, caption=image_caption)
+        if image is not None:
+            # Replace None with an empty string for image_caption
+            image_caption = "" if image_caption is None else image_caption
+            st.image(image, use_column_width=True, caption=image_caption)
 
         # Add a "Save" button to save the image
         if st.button("Save Image"):
